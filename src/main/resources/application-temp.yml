@@ -1,0 +1,44 @@
+#配置访问端口、访问的项目主路径
+server:
+  port: 10011
+  servlet:
+    context-path: /
+
+#logback自定义路径配置
+logback:
+  logdir: D:/web/log
+  appname: jzdsys
+
+# 开启测试ws
+webservice:
+  test:
+    jd_enable: false
+    szy_enable: true
+    ws_jd_addr: http://127.0.0.1:10011/services/jd?wsdl
+    ws_szy_addr: http://127.0.0.1:10011/services/szy?wsdl
+
+
+#mybatis-plus相关配置
+mybatis-plus:
+  mapper-locations: classpath*:mappers/*/*.xml
+  global-config:
+    db-config:
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+#多数据源配置
+spring:
+  datasource:
+    dynamic:
+      primary: local #设置默认的数据源或者数据源组,默认值即为master
+      datasource:
+        local:
+          username: sa
+          password: Zy@63120760
+          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+          url: jdbc:sqlserver://127.0.0.1;DatabaseName=JZ-dsys
+        DSY:
+          username: sa
+          password: Zy@63120760
+          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+          url: jdbc:sqlserver://127.0.0.1;DatabaseName=JZDSY

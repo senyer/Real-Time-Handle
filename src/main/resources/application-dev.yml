@@ -1,0 +1,25 @@
+server:
+  servlet:
+    context-path: /
+  port: 8082
+
+#logback自定义路径配置
+logback:
+  logdir: D:/sen/log
+  appname: sen   
+  
+#mybatis-plus相关配置
+mybatis-plus:
+  mapper-locations: classpath*:mappers/*/*.xml
+
+#多数据源配置      
+spring:
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      datasource:
+        master:
+          username: sa
+          password: c4FZy63120760jqT
+          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+          url: jdbc:sqlserver://192.168.100.15;DatabaseName=RealTimeDB
