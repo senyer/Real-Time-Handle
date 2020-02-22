@@ -17,12 +17,22 @@ public class InfluxDBTest {
 
     InfluxDB influxDB = InfluxDBFactory.connect(URL, USER, PASSWORD);
     //写数据
-    Point.Builder builder = Point.measurement("松浦泵站6#机泵状态")
-            .tag("tag1", "www").tag("tag2", "22")
-            .tag("tag3", "man");
-    Point point = builder .addField("value1", 66).addField("value2", 22).build();
-    influxDB.write(INFLUXDB_DBNAME, "autogen", point );
 
+    String dbName = "aTimeSeries";
+    QueryResult query1 = influxDB.query(new Query("show databases "));
+    List<List<Object>> values = query1.getResults().get(0).getSeries().get(0).getValues();
+    System.out.println(values.size());
+    System.out.println(values.get(0).size());
+    System.out.println(values.get(0).get(0));
+    String rpName = "aRetentionPolicy";
+    influxDB.query(new Query("CREATE RETENTION POLICY " + rpName + " ON " + dbName + " DURATION 30h REPLICATION 2 SHARD DURATION 30m DEFAULT"));
+
+
+    Point.Builder builder = Point.measurement("松浦泵站6#机泵状态")
+            .tag("tag1", "www22").tag("tag2", "22")
+            .tag("tag3", "man22");
+    Point point = builder .addField("value11", 66).addField("value2", 22).build();
+    influxDB.write(INFLUXDB_DBNAME, "autogen", point );
     //查数据
     String sql = "select * from table_test";
     Query query = new Query(sql, INFLUXDB_DBNAME);
