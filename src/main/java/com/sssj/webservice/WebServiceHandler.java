@@ -19,6 +19,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
@@ -93,9 +94,9 @@ public class WebServiceHandler {
       hasDBOrCreate();
       list.forEach((v) -> {
         String name = v.getName();
-        System.out.println(name);
         Point point = Point
                 .measurement(name)
+                .time(System.currentTimeMillis()+28800000, TimeUnit.MILLISECONDS)//UTC+8个小时等于北京时间
                 .addField("seq_id", v.getSeqId())
                 .addField("value", v.getValue())
                 .addField("sourceTime", DateUtil.dateToString(v.getTime(), DateUtil.DATETIME_NORMAL_FORMAT))
@@ -103,7 +104,7 @@ public class WebServiceHandler {
 
         influxDB.write(DATABASE, "autogen", point);
       });
-      log.error(">>>>>>>>>>>>>>Write To InfluxDB SUCCESS!");
+      log.info(">>>>>>>>>>>>>>Write To InfluxDB SUCCESS!");
     } catch (Exception e){
       log.error(">>>>>>>>>>>>>>Write To InfluxDB Failed! {1}",e);
     }finally {

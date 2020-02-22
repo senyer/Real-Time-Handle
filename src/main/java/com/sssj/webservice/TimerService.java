@@ -22,12 +22,12 @@ public class TimerService {
   private StoreService storeService;
 
   /*
+    用于推送假数据测试推送数据到数据库和influxdb
    */
   @Scheduled(cron = "0/9 * * * * *")
   public void scheduledAsyncOpc(){
     try {
       log.info(">>>>>>>>>>>>>>>>>>>>>>>> Running Scheduled Test WebService Push ");
-      System.out.println(storeService);
       SoapClient.create(wsdl)
               .setMethod("web:realtime", "http://webservice.zy.com/")
               .setParam("data", data)
