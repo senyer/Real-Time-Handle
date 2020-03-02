@@ -24,7 +24,7 @@ public class TimerService {
   /*
     用于推送假数据测试推送数据到数据库和influxdb
    */
-  @Scheduled(cron = "0/9 * * * * *")
+  //@Scheduled(cron = "0/9 * * * * *")
   public void scheduledAsyncOpc(){
     try {
       log.info(">>>>>>>>>>>>>>>>>>>>>>>> Running Scheduled Test WebService Push ");

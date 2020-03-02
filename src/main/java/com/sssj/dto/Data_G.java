@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Data_G {
   private String name;
-  private String value;
+  private Double value;
   private String time;//influxDB更新时间戳
   private String sourceTime;//目标源时间
 }

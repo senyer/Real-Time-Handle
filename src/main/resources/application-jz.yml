@@ -1,11 +1,11 @@
 server:
   servlet:
     context-path: /
-  port: 8082
+  port: 10080
 
 #logback自定义路径配置
 logback:
-  logdir: D:/sen/log
+  logdir: C:/OpcClientSenyer/zydata/logs
   appname: sen
 
 #mybatis-plus相关配置
@@ -20,6 +20,6 @@ spring:
       datasource:
         master:
           username: sa
-          password: c4FZy63120760jqT
+          password: Zy@63120760
           driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
           url: jdbc:sqlserver://192.168.100.15;DatabaseName=RealTimeDB

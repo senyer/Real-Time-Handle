@@ -49,7 +49,7 @@ public class DataController {
         List<QueryResult.Series> series = queryResult.getResults().get(0).getSeries();
         if (series!= null) {
           String time=(String)series.get(0).getValues().get(0).get(0);
-          String value=(String)series.get(0).getValues().get(0).get(1);
+          Double value=(Double)series.get(0).getValues().get(0).get(1);
           String sourcetime=(String)series.get(0).getValues().get(0).get(2);
 
           Data_G data_g = new Data_G();

@@ -30,7 +30,7 @@ public class RealtimeData extends Model<RealtimeData> {
 
     private Date time;
 
-    private String value;
+    private Double value;
 
 
     @Override
